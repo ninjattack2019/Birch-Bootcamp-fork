@@ -21,41 +21,16 @@
           Home
         </a>
       </li>
-      <li>
-        <a href="./pages/about.html">
-          ABOUT ME
-        </a>
-      </li>
-      <li>
-        <a href="./DinoGame.html">
-          DinoGame
-        </a>
-      </li>
-      <li>
-        <a href="./Test.html">
-          Test
-        </a>
-      </li>
-      <li>
-        <a href="./Tetris.html">
-          Tetris
-        </a>
-      </li>
     </ul>
   </header>
 
-  <main>
+  <main style="padding:50px">
 
     <div class="content" style="padding-top:150px">
+      <input type="text" id="Amount" name="Amount">
+      <button onclick="setAmount()">Set Amount</button>
       <button onclick="createCard()">Create Card</button>
       <div id="cardContainer"></div>
-      <!--This is content card 1-->
-      <div class="card">
-        <p id="First">0</p>
-        <aside>
-          <button onClick="addOne('First')">Add one</button>
-        </aside>
-
     </div>
 
      <script>
@@ -72,6 +47,18 @@
         }
 
        };
+
+       function setAmount() {
+         var Amount = document.getElementById("Amount").value;
+         for (const [key, value] of Object.entries(storage)) {
+            document.getElementById(key).innerHTML = Amount;
+            storage[key] = Amount;  
+         };
+
+           
+           
+         }
+         
        let cardCounter = 0;
 
        function createCard() {
@@ -81,27 +68,21 @@
            const cardDiv = document.createElement('div');
            cardDiv.className = 'card';
 
-           const p = document.createElement('p');
+           const p = document.createElement('h2');
            p.id = `Card${cardCounter}`;
+           storage[p.id] = 1;
            p.textContent = '0';
-
-           const aside = document.createElement('aside');
-
+         
            const button = document.createElement('button');
            button.textContent = 'Add one';
            button.setAttribute('onClick', `addOne('Card${cardCounter}')`);
 
-           aside.appendChild(button);
+           cardDiv.appendChild(document.createElement('input'))
            cardDiv.appendChild(p);
-           cardDiv.appendChild(aside);
-
+           cardDiv.appendChild(button);
            cardContainer.appendChild(cardDiv);
        };
 
-       function addOne(id) {
-           const p = document.getElementById(id);
-           p.textContent = parseInt(p.textContent) + 1;
-       };
      </script>
   </main>
 
