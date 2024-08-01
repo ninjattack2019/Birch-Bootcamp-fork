@@ -8,29 +8,82 @@
   <meta name="description" content="Landing page for Ryker Swensen Fun Site">
   <title>Summer Bootcamp Template</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/newstyle.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .container {
+      display: flex;
+      height: 95vh;
+      width: 100%;
+    }
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: #f1f1f1;
+    }
+    #cardContainer {
+        display: grid;
+        flex-direction: column;
+        align-items: center;
+        grid-template-columns: 1fr; 
+        gap: 5px;
+        width: 100%;
+        max-height: 60vh;
+        overflow-y:auto;
+      }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .controlcontent {
+      max-height:30vh;
+      margin: auto;
+      width: 95%;
+      gap: 5px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    @media (min-width: 600px) {
+      #cardContainer {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 900px) {
+      #cardContainer {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1>Zach Verba</h1>
-    <ul>
-      <li>
-        <a href="./index.html">
-          Home
-        </a>
-      </li>
-    </ul>
-  </header>
-
-  <main style="padding:5%">
-
-    <div class="content" style="padding-top:150px">
-      <input type="text" id="Amount" name="Amount">
-      <button onclick="setAmount()">Set Amount</button>
-      <button onclick="createCard()">Create Card</button>
-      <div id="cardContainer"></div>
+  <main>
+    <div class='container'>
+      <div class='controls'>
+        <div class="content">
+          <div class='controlcontent'>
+            <input type="text" id="Amount" name="Amount">
+            <button onclick="setAmount()">Set Amount</button>
+            <input type="text" id="stepAmount" name="stepAmount">
+            <button onclick="stepAmount()">Set Step Amount</button>
+            <button onclick="createCard()">Create Card</button>
+          </div>
+          <div id="cardContainer"></div>
+        </div>
+      </div>
     </div>
 
      <script>
@@ -74,6 +127,7 @@
            const button = document.createElement('button');
            button.textContent = 'Add one';
            button.setAttribute('onClick', `addOne('Card${cardCounter}')`);
+           button.setAttribute('style', 'width: 20vh;');
 
            cardDiv.appendChild(document.createElement('input'))
            cardDiv.appendChild(p);
